@@ -64,5 +64,12 @@ namespace ERP_Application
                 }
             }
         }
+
+        private void penjualanToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormNota frm = new FormNota();
+            frm.Owner = this;
+            frm.ShowDialog();
+        }
     }
 }
