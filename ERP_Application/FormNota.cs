@@ -12,6 +12,7 @@ namespace ERP_Application
 {
     public partial class FormNota : Form
     {
+        Form1 frmMain;
         public FormNota()
         {
             InitializeComponent();
@@ -19,7 +20,7 @@ namespace ERP_Application
 
         private void FormNota_Load(object sender, EventArgs e)
         {
-
+            frmMain = (Form1)this.Owner;
         }
     }
 }
