@@ -106,42 +106,16 @@ namespace ERP_Application
             // 2. Attach the PrintPage event handler
             printDoc.PrintPage += new PrintPageEventHandler(PrintDocument_PrintPage);
 
-            // 1.Create the Print Preview Window
-            PrintPreviewDialog previewDialog = new PrintPreviewDialog();
-            previewDialog.Document = printDoc;
-            ((Form)previewDialog).WindowState = FormWindowState.Maximized;
-            // 2. Allow the cashier to choose printer options when clicking "Print" inside the preview
-            ToolStrip toolStrip = null;
-            foreach (Control c in previewDialog.Controls)
+            // Show native Windows Print Dialog so cashier can choose printer & page size
+            PrintDialog printDialog = new PrintDialog();
+            printDialog.Document = printDoc;
+            printDialog.AllowSomePages = false;
+            printDialog.ShowHelp = false;
+
+            if (printDialog.ShowDialog() == DialogResult.OK)
             {
-                if (c is ToolStrip)
-                {
-                    toolStrip = (ToolStrip)c;
-                    break;
-                }
+                printDoc.Print();
             }
-
-            if (toolStrip != null)
-            {
-                // Intercept the preview print button to open PrintDialog instead of direct default print
-                ToolStripItem printBtn = toolStrip.Items["print"];
-                if (printBtn != null)
-                {
-                    printBtn.Click += (s, args) =>
-                    {
-                        PrintDialog printDialog = new PrintDialog();
-                        printDialog.Document = printDoc;
-
-                        if (printDialog.ShowDialog() == DialogResult.OK)
-                        {
-                            printDoc.Print();
-                        }
-                    };
-                }
-            }
-
-            // 3. Display the visual preview
-            previewDialog.ShowDialog();
         }
         private void PrintDocument_PrintPage(object sender, PrintPageEventArgs e)
         {
