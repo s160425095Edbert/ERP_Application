@@ -29,21 +29,22 @@
         private void InitializeComponent()
         {
             this.dataGridViewNota = new System.Windows.Forms.DataGridView();
-            this.labelTanggal = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBoxNama = new System.Windows.Forms.TextBox();
             this.colNomor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colNamabarang = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colBanyaknya = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSatuan = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.colHarga = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colJumlah = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.labelTanggal = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBoxNama = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.buttonPrint = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewNota)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -71,32 +72,6 @@
             this.dataGridViewNota.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewNota_CellValueChanged);
             this.dataGridViewNota.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridViewNota_RowsAdded);
             this.dataGridViewNota.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dataGridViewNota_RowsRemoved);
-            // 
-            // labelTanggal
-            // 
-            this.labelTanggal.AutoSize = true;
-            this.labelTanggal.Location = new System.Drawing.Point(698, 13);
-            this.labelTanggal.Name = "labelTanggal";
-            this.labelTanggal.Size = new System.Drawing.Size(208, 16);
-            this.labelTanggal.TabIndex = 1;
-            this.labelTanggal.Text = "Tanggal 21 Agustus 2026 00:00:00";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(698, 48);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(89, 16);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Kepada YTH:";
-            // 
-            // textBoxNama
-            // 
-            this.textBoxNama.Location = new System.Drawing.Point(793, 48);
-            this.textBoxNama.Name = "textBoxNama";
-            this.textBoxNama.Size = new System.Drawing.Size(147, 22);
-            this.textBoxNama.TabIndex = 3;
-            this.textBoxNama.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxNama_KeyDown);
             // 
             // colNomor
             // 
@@ -139,6 +114,32 @@
             this.colJumlah.HeaderText = "JUMLAH";
             this.colJumlah.MinimumWidth = 6;
             this.colJumlah.Name = "colJumlah";
+            // 
+            // labelTanggal
+            // 
+            this.labelTanggal.AutoSize = true;
+            this.labelTanggal.Location = new System.Drawing.Point(698, 13);
+            this.labelTanggal.Name = "labelTanggal";
+            this.labelTanggal.Size = new System.Drawing.Size(208, 16);
+            this.labelTanggal.TabIndex = 1;
+            this.labelTanggal.Text = "Tanggal 21 Agustus 2026 00:00:00";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(698, 48);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(89, 16);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Kepada YTH:";
+            // 
+            // textBoxNama
+            // 
+            this.textBoxNama.Location = new System.Drawing.Point(793, 48);
+            this.textBoxNama.Name = "textBoxNama";
+            this.textBoxNama.Size = new System.Drawing.Size(147, 22);
+            this.textBoxNama.TabIndex = 3;
+            this.textBoxNama.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxNama_KeyDown);
             // 
             // label2
             // 
@@ -197,11 +198,22 @@
             this.pictureBox1.TabIndex = 9;
             this.pictureBox1.TabStop = false;
             // 
+            // label6
+            // 
+            this.label6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label6.Location = new System.Drawing.Point(336, 436);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(214, 68);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "PERHATIAN: Barang yang telah dibeli tidak dapat dikembalikan atau ditukar.";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // FormNota
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(946, 658);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.buttonPrint);
             this.Controls.Add(this.label5);
@@ -242,5 +254,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button buttonPrint;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label6;
     }
 }

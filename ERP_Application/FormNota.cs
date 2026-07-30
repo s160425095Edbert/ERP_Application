@@ -1,13 +1,14 @@
 ﻿using System;
-using System.Drawing;
-using System.Drawing.Printing;
-using System.Windows.Forms;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace ERP_Application
 {
@@ -105,12 +106,41 @@ namespace ERP_Application
             // 2. Attach the PrintPage event handler
             printDoc.PrintPage += new PrintPageEventHandler(PrintDocument_PrintPage);
 
-            // 3. Show standard Print Preview dialog (or direct print)
+            // 1.Create the Print Preview Window
             PrintPreviewDialog previewDialog = new PrintPreviewDialog();
             previewDialog.Document = printDoc;
-
-            // Maximize preview window for easy view
             ((Form)previewDialog).WindowState = FormWindowState.Maximized;
+            // 2. Allow the cashier to choose printer options when clicking "Print" inside the preview
+            ToolStrip toolStrip = null;
+            foreach (Control c in previewDialog.Controls)
+            {
+                if (c is ToolStrip)
+                {
+                    toolStrip = (ToolStrip)c;
+                    break;
+                }
+            }
+
+            if (toolStrip != null)
+            {
+                // Intercept the preview print button to open PrintDialog instead of direct default print
+                ToolStripItem printBtn = toolStrip.Items["print"];
+                if (printBtn != null)
+                {
+                    printBtn.Click += (s, args) =>
+                    {
+                        PrintDialog printDialog = new PrintDialog();
+                        printDialog.Document = printDoc;
+
+                        if (printDialog.ShowDialog() == DialogResult.OK)
+                        {
+                            printDoc.Print();
+                        }
+                    };
+                }
+            }
+
+            // 3. Display the visual preview
             previewDialog.ShowDialog();
         }
         private void PrintDocument_PrintPage(object sender, PrintPageEventArgs e)
@@ -120,12 +150,13 @@ namespace ERP_Application
             Font fontSubHeader = new Font("Arial", 10, FontStyle.Regular);
             Font fontBody = new Font("Arial", 9, FontStyle.Regular);
             Font fontBodyBold = new Font("Arial", 9, FontStyle.Bold);
+            Font fontWarning = new Font("Arial", 8, FontStyle.Italic);
 
             int startX = 40;
             int startY = 40;
             int offsetY = 0;
 
-            // --- HEADER SECTION ---
+            // --- HEADER ---
             g.DrawString("NOTA PENJUALAN", fontHeader, Brushes.Black, startX, startY + offsetY);
             offsetY += 25;
 
@@ -147,13 +178,13 @@ namespace ERP_Application
             g.DrawLine(Pens.Black, startX, startY + offsetY, startX + 650, startY + offsetY);
             offsetY += 10;
 
-            // --- TABLE DATA ROWS ---
+            // --- TABLE DATA ---
             decimal grandTotal = 0;
 
             for (int i = 0; i < dataGridViewNota.Rows.Count; i++)
             {
                 var row = dataGridViewNota.Rows[i];
-                if (row.IsNewRow) continue; // Skip empty row at bottom
+                if (row.IsNewRow) continue;
 
                 string no = row.Cells[0].Value?.ToString() ?? "";
                 string nama = row.Cells[1].Value?.ToString() ?? "";
@@ -162,12 +193,10 @@ namespace ERP_Application
                 string harga = row.Cells[4].Value?.ToString() ?? "";
                 string jumlah = row.Cells[5].Value?.ToString() ?? "";
 
-                // Calculate Grand Total safely
                 decimal rowTotal = 0;
                 decimal.TryParse(jumlah.Replace(".", ""), out rowTotal);
                 grandTotal += rowTotal;
 
-                // Draw Row Items
                 g.DrawString(no, fontBody, Brushes.Black, startX, startY + offsetY);
                 g.DrawString(nama, fontBody, Brushes.Black, startX + 40, startY + offsetY);
                 g.DrawString(banyak, fontBody, Brushes.Black, startX + 260, startY + offsetY);
@@ -178,20 +207,37 @@ namespace ERP_Application
                 offsetY += 20;
             }
 
-            // --- FOOTER & TOTAL ---
+            // --- TOTAL ---
             g.DrawLine(Pens.Black, startX, startY + offsetY, startX + 650, startY + offsetY);
             offsetY += 10;
 
             g.DrawString("TOTAL: Rp " + grandTotal.ToString("N0"), fontBodyBold, Brushes.Black, startX + 440, startY + offsetY);
-            offsetY += 50;
+            offsetY += 40;
 
-            // Signatures
-            g.DrawString("Tanda Terima,", fontBody, Brushes.Black, startX + 50, startY + offsetY);
-            g.DrawString("Hormat Kami,", fontBody, Brushes.Black, startX + 450, startY + offsetY);
+            // --- FOOTER: SIGNATURES & WARNING BOX ---
+            int footerY = startY + offsetY;
 
-            offsetY += 60;
-            g.DrawString("( _______________ )", fontBody, Brushes.Black, startX + 30, startY + offsetY);
-            g.DrawString("( _______________ )", fontBody, Brushes.Black, startX + 430, startY + offsetY);
+            // 1. Left Signature
+            g.DrawString("Tanda Terima,", fontBody, Brushes.Black, startX + 20, footerY);
+            g.DrawString("( _______________ )", fontBody, Brushes.Black, startX + 10, footerY + 60);
+
+            // 2. Middle Warning Box ("PERHATIAN...")
+            int boxX = startX + 200;
+            int boxY = footerY;
+            int boxWidth = 220;
+            int boxHeight = 65;
+
+            // Draw outline rectangle box
+            g.DrawRectangle(Pens.Black, boxX, boxY, boxWidth, boxHeight);
+
+            // Draw wrapped warning text inside the box
+            string warningText = "PERHATIAN:\nBarang yang telah dibeli tidak dapat dikembalikan atau ditukar.";
+            RectangleF textRect = new RectangleF(boxX + 5, boxY + 5, boxWidth - 10, boxHeight - 10);
+            g.DrawString(warningText, fontWarning, Brushes.Black, textRect);
+
+            // 3. Right Signature
+            g.DrawString("Hormat Kami,", fontBody, Brushes.Black, startX + 480, footerY);
+            g.DrawString("( _______________ )", fontBody, Brushes.Black, startX + 460, footerY + 60);
         }
     }
 }
