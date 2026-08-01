@@ -71,5 +71,12 @@ namespace ERP_Application
             frm.Owner = this;
             frm.ShowDialog();
         }
+
+        private void adminToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormAdmin frm = new FormAdmin();
+            frm.Owner = this;
+            frm.ShowDialog();
+        }
     }
 }
