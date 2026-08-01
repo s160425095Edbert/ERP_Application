@@ -123,6 +123,12 @@
     <Compile Include="FormPembelian.Designer.cs">
       <DependentUpon>FormPembelian.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormVerification.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormVerification.Designer.cs">
+      <DependentUpon>FormVerification.cs</DependentUpon>
+    </Compile>
     <Compile Include="Owner.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
