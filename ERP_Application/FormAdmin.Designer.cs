@@ -51,12 +51,14 @@
             this.dataToolStripMenuItem.Name = "dataToolStripMenuItem";
             this.dataToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
             this.dataToolStripMenuItem.Text = "Data";
+            this.dataToolStripMenuItem.Click += new System.EventHandler(this.dataToolStripMenuItem_Click);
             // 
             // pembelianToolStripMenuItem
             // 
             this.pembelianToolStripMenuItem.Name = "pembelianToolStripMenuItem";
             this.pembelianToolStripMenuItem.Size = new System.Drawing.Size(92, 24);
             this.pembelianToolStripMenuItem.Text = "Pembelian";
+            this.pembelianToolStripMenuItem.Click += new System.EventHandler(this.pembelianToolStripMenuItem_Click);
             // 
             // FormAdmin
             // 

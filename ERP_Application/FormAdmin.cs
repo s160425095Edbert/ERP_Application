@@ -16,5 +16,19 @@ namespace ERP_Application
         {
             InitializeComponent();
         }
+
+        private void dataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormData frm = new FormData();
+            frm.Owner = this;
+            frm.ShowDialog();
+        }
+
+        private void pembelianToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormPembelian frm = new FormPembelian();
+            frm.Owner = this;
+            frm.ShowDialog();
+        }
     }
 }
