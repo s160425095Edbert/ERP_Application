@@ -32,6 +32,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.No = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NamaBarang = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Jumlah = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,14 +65,38 @@
             // 
             // dataGridView1
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 63);
+            this.dataGridView1.ColumnHeadersHeight = 29;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.No,
+            this.NamaBarang,
+            this.Jumlah});
+            this.dataGridView1.Location = new System.Drawing.Point(15, 58);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(761, 303);
+            this.dataGridView1.Size = new System.Drawing.Size(773, 288);
             this.dataGridView1.TabIndex = 3;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // No
+            // 
+            this.No.HeaderText = "No";
+            this.No.MinimumWidth = 6;
+            this.No.Name = "No";
+            this.No.Width = 125;
+            // 
+            // NamaBarang
+            // 
+            this.NamaBarang.HeaderText = "NamaBarang";
+            this.NamaBarang.MinimumWidth = 6;
+            this.NamaBarang.Name = "NamaBarang";
+            this.NamaBarang.Width = 125;
+            // 
+            // Jumlah
+            // 
+            this.Jumlah.HeaderText = "Jumlah";
+            this.Jumlah.MinimumWidth = 6;
+            this.Jumlah.Name = "Jumlah";
+            this.Jumlah.Width = 125;
             // 
             // FormPembelian
             // 
@@ -94,5 +121,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn No;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NamaBarang;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Jumlah;
     }
 }
