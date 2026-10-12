@@ -76,27 +76,31 @@
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(773, 288);
             this.dataGridView1.TabIndex = 3;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // No
             // 
+            this.No.FillWeight = 160.4278F;
             this.No.HeaderText = "No";
             this.No.MinimumWidth = 6;
             this.No.Name = "No";
-            this.No.Width = 125;
+            this.No.Width = 50;
             // 
             // NamaBarang
             // 
+            this.NamaBarang.FillWeight = 134.9455F;
             this.NamaBarang.HeaderText = "NamaBarang";
             this.NamaBarang.MinimumWidth = 6;
             this.NamaBarang.Name = "NamaBarang";
-            this.NamaBarang.Width = 125;
+            this.NamaBarang.Width = 450;
             // 
             // Jumlah
             // 
+            this.Jumlah.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Jumlah.FillWeight = 4.626704F;
             this.Jumlah.HeaderText = "Jumlah";
             this.Jumlah.MinimumWidth = 6;
             this.Jumlah.Name = "Jumlah";
-            this.Jumlah.Width = 125;
             // 
             // FormPembelian
             // 
