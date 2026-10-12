@@ -35,6 +35,7 @@
             this.No = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NamaBarang = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Jumlah = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -102,11 +103,21 @@
             this.Jumlah.MinimumWidth = 6;
             this.Jumlah.Name = "Jumlah";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(669, 382);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(104, 42);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Save";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // FormPembelian
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -128,5 +139,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn No;
         private System.Windows.Forms.DataGridViewTextBoxColumn NamaBarang;
         private System.Windows.Forms.DataGridViewTextBoxColumn Jumlah;
+        private System.Windows.Forms.Button button1;
     }
 }
